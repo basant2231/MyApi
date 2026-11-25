@@ -28,3 +28,4 @@ public class Book
     public List<UserFavorite> FavoritedBy { get; set; } = [];
     public List<ReadingProgress> ReadingProgress { get; set; } = [];
 }
+

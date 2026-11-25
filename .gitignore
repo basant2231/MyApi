@@ -42,6 +42,9 @@ project.lock.json
 **/[Pp]ackages/*
 !**/[Pp]ackages/build/
 
+# Logs
+logs/
+
 # Secrets (never commit these!)
 appsettings.Production.json
 

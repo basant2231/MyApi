@@ -18,3 +18,4 @@ public class PaginatedResponse<T>
     public bool HasPreviousPage { get; set; }
     public bool HasNextPage { get; set; }
 }
+

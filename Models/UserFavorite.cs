@@ -12,3 +12,4 @@ public class UserFavorite
     public Book Book { get; set; } = null!;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
+

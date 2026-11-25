@@ -22,3 +22,4 @@ public class BookResponse
     public int FavoriteCount { get; set; }
     public ReadingProgressResponse? MyReadingProgress { get; set; }
 }
+

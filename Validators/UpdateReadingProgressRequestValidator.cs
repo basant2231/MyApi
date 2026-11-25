@@ -24,3 +24,4 @@ public class UpdateReadingProgressRequestValidator : AbstractValidator<UpdateRea
             .When(x => x.Notes is not null);
     }
 }
+

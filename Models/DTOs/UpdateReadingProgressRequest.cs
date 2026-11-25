@@ -17,3 +17,4 @@ public class UpdateReadingProgressRequest
     [MaxLength(1000, ErrorMessage = "Notes must not exceed 1000 characters.")]
     public string? Notes { get; set; }
 }
+

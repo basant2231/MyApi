@@ -40,8 +40,16 @@ public class SecurityHeadersMiddleware
         context.Response.Headers["Permissions-Policy"] =
             "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()";
 
-        // Content Security Policy for API responses
-        context.Response.Headers["Content-Security-Policy"] = "default-src 'none'; frame-ancestors 'none'";
+        // Content Security Policy — strict for API, relaxed for Swagger UI
+        var path = context.Request.Path.Value ?? "";
+        var isSwagger = path.StartsWith("/swagger", StringComparison.OrdinalIgnoreCase)
+                     || path.Equals("/", StringComparison.OrdinalIgnoreCase)
+                     || path.StartsWith("/index.html", StringComparison.OrdinalIgnoreCase);
+
+        if (!isSwagger)
+        {
+            context.Response.Headers["Content-Security-Policy"] = "default-src 'none'; frame-ancestors 'none'";
+        }
 
         await _next(context);
     }

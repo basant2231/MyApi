@@ -163,6 +163,13 @@ try
     // Register all FluentValidation validators from this assembly
     builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
+    // ───────────── REQUEST BODY SIZE LIMIT ─────────────
+    // Prevent large payload DoS attacks (1 MB max per request)
+    builder.WebHost.ConfigureKestrel(options =>
+    {
+        options.Limits.MaxRequestBodySize = 1_048_576; // 1 MB
+    });
+
     // ───────────── CONTROLLERS & SWAGGER ─────────────
     builder.Services.AddControllers()
         .AddJsonOptions(options =>
@@ -172,6 +179,10 @@ try
             options.JsonSerializerOptions.DefaultIgnoreCondition =
                 System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
         });
+
+    // Suppress default ModelState validation — FluentValidation handles it
+    builder.Services.Configure<Microsoft.AspNetCore.Mvc.ApiBehaviorOptions>(options =>
+        options.SuppressModelStateInvalidFilter = true);
 
     builder.Services.AddOpenApi();
 

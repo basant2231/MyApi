@@ -293,3 +293,4 @@ public class BooksController : ControllerBase
         return GetUserId() ?? throw new UnauthorizedAccessException("User not authenticated.");
     }
 }
+

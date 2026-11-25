@@ -26,3 +26,4 @@ public interface IBookService
     // ── Genres ──
     Task<List<string>> GetGenresAsync();
 }
+

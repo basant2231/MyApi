@@ -36,3 +36,4 @@ public class CreateBookRequestValidator : AbstractValidator<CreateBookRequest>
             .When(x => x.PublishedDate.HasValue);
     }
 }
+

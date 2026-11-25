@@ -10,3 +10,4 @@ public class ReadingProgressResponse
     public DateTime? StartedAt { get; set; }
     public DateTime? FinishedAt { get; set; }
 }
+

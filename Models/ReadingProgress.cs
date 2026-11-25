@@ -35,3 +35,4 @@ public enum ReadingStatus
     Finished = 2,
     Dropped = 3
 }
+

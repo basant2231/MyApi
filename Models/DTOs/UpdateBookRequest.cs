@@ -30,3 +30,4 @@ public class UpdateBookRequest
 
     public DateTime? PublishedDate { get; set; }
 }
+
