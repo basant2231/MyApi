@@ -20,6 +20,11 @@ public class SecurityHeadersMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
+        var path = context.Request.Path.Value ?? "";
+        var isSwagger = path.StartsWith("/swagger", StringComparison.OrdinalIgnoreCase)
+                     || path == "/"
+                     || path.StartsWith("/index.html", StringComparison.OrdinalIgnoreCase);
+
         // Prevent browsers from MIME-type sniffing (security risk)
         context.Response.Headers["X-Content-Type-Options"] = "nosniff";
 
@@ -40,8 +45,11 @@ public class SecurityHeadersMiddleware
         context.Response.Headers["Permissions-Policy"] =
             "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()";
 
-        // Content Security Policy for API responses
-        context.Response.Headers["Content-Security-Policy"] = "default-src 'none'; frame-ancestors 'none'";
+        // Content Security Policy — relaxed for Swagger UI, strict for API
+        if (!isSwagger)
+        {
+            context.Response.Headers["Content-Security-Policy"] = "default-src 'none'; frame-ancestors 'none'";
+        }
 
         await _next(context);
     }
