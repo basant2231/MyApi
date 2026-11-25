@@ -158,6 +158,7 @@ try
     // ───────────── REGISTER SERVICES ─────────────
     builder.Services.AddScoped<ITokenService, TokenService>();
     builder.Services.AddScoped<IAuthService, AuthService>();
+    builder.Services.AddScoped<IBookService, BookService>();
 
     // Register all FluentValidation validators from this assembly
     builder.Services.AddValidatorsFromAssemblyContaining<Program>();
